@@ -19,7 +19,7 @@ namespace DBManager
 
         public AccesoDatos()
         {
-            conexion= new SqlConnection(" ");
+            conexion= new SqlConnection("server= .\\SQLEXPRESS; database= CATALOGO_P3_DB; integrated security= true");
             comando = new SqlCommand();
         }
 
