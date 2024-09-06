@@ -17,7 +17,7 @@ namespace DBManager
     
             try
             {
-                datos.setearConsulta("SELECT Codigo, Nombre, A.Descripcion, M.Descripcion as Marca, C.Descripcion as Categoria, Precio FROM ARTICULOS A JOIN MARCAS M ON M.Id = A.IdMarca JOIN CATEGORIAS C ON C.Id = A.IdCategoria;");
+                datos.setearConsulta("SELECT Codigo, Nombre, A.Descripcion, M.Descripcion as Marca, C.Descripcion as Categoria, Precio FROM ARTICULOS A JOIN MARCAS M ON M.Id = A.IdMarca JOIN CATEGORIAS C ON C.Id = A.IdCategoria");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
