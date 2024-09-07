@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using dominio;
@@ -25,21 +26,19 @@ namespace DBManager
                     aux.id = (int) datos.Lector["Id"];
                     aux.idArticulo= (int) datos.Lector["IdArticulo"];
                     aux.ImagenUrl = (string)datos.Lector["ImagenUrl"];
+                    Console.WriteLine(aux.ImagenUrl);
                     imagenes.Add(aux);
-
-                }
-
-                return imagenes;
+                }     
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
-            finally
+            finally 
             {
                 datos.cerrarConexion();
             }
+            return imagenes;
         }
     }
 }

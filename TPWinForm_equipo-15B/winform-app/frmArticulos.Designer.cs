@@ -44,12 +44,14 @@
             this.dgbArticulos.RowTemplate.Height = 28;
             this.dgbArticulos.Size = new System.Drawing.Size(907, 378);
             this.dgbArticulos.TabIndex = 0;
+            this.dgbArticulos.SelectionChanged += new System.EventHandler(this.dgbArticulos_SelectionChanged);
             // 
             // pbArticulo
             // 
             this.pbArticulo.Location = new System.Drawing.Point(938, 70);
             this.pbArticulo.Name = "pbArticulo";
             this.pbArticulo.Size = new System.Drawing.Size(470, 378);
+            this.pbArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbArticulo.TabIndex = 1;
             this.pbArticulo.TabStop = false;
             // 

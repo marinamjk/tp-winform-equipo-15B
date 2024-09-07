@@ -17,13 +17,13 @@ namespace DBManager
     
             try
             {
-                datos.setearConsulta("SELECT A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion as Marca, C.Descripcion as Categoria, Precio FROM ARTICULOS A JOIN MARCAS M ON M.Id = A.IdMarca JOIN CATEGORIAS C ON C.Id = A.IdCategoria");
+                datos.setearConsulta("SELECT A.Id as ArticuloId, Codigo, Nombre, A.Descripcion, M.Descripcion as Marca, C.Descripcion as Categoria, Precio FROM ARTICULOS A JOIN MARCAS M ON M.Id = A.IdMarca JOIN CATEGORIAS C ON C.Id = A.IdCategoria");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     Articulo aux= new Articulo();
-                    aux.id = (int)datos.Lector["Id"];
+                    aux.id = (int) datos.Lector["ArticuloId"];
                     aux.Codigo = (string) datos.Lector["Codigo"];
                     aux.Nombre = (string) datos.Lector["Nombre"];
                     aux.Descripcion = (string) datos.Lector["Descripcion"];
@@ -34,20 +34,20 @@ namespace DBManager
                     aux.Precio = (decimal) datos.Lector["Precio"];
                     ImagenManager im = new ImagenManager();
                     aux.Imagenes= im.buscarImagenesXArticulo(aux.id);
-
                     catalogo.Add(aux);
                 }
-                return catalogo;
+                
             }
             catch (Exception ex)
             {
                 throw ex;
+                
             }
-            finally
+            finally 
             {
                 datos.cerrarConexion();
             }
-            
+            return catalogo;
         }
     
     }
