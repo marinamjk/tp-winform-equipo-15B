@@ -28,9 +28,9 @@ namespace winform_app
 
         private void dgbArticulos_SelectionChanged(object sender, EventArgs e)
         {
-            if(dgbArticulos.CurrentRow != null)
+            if(dgvArticulos.CurrentRow != null)
             {
-                Articulo seleccionado = (Articulo) dgbArticulos.CurrentRow.DataBoundItem;
+                Articulo seleccionado = (Articulo) dgvArticulos.CurrentRow.DataBoundItem;
                 cargarImagen(seleccionado.Imagenes[0].ImagenUrl);
             }
                    
@@ -42,7 +42,8 @@ namespace winform_app
             try
             {
                 listaArticulos = articuloManager.listar();
-                dgbArticulos.DataSource = listaArticulos;
+                dgvArticulos.DataSource = listaArticulos;
+                dgvArticulos.Columns["id"].Visible = false;
                 pbArticulo.Load(listaArticulos[0].Imagenes[0].ImagenUrl);
             }
             catch (Exception ex)

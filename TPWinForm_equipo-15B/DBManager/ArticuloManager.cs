@@ -23,17 +23,17 @@ namespace DBManager
                 while (datos.Lector.Read())
                 {
                     Articulo aux= new Articulo();
-                    aux.id = (int) datos.Lector["ArticuloId"];
+                    aux.Id = (int) datos.Lector["ArticuloId"];
                     aux.Codigo = (string) datos.Lector["Codigo"];
                     aux.Nombre = (string) datos.Lector["Nombre"];
                     aux.Descripcion = (string) datos.Lector["Descripcion"];
-                    aux.marca= new Marca();
-                    aux.marca.Descripcion = (string)datos.Lector["Marca"];
+                    aux.Marca= new Marca();
+                    aux.Marca.Descripcion = (string)datos.Lector["Marca"];
                     aux.Categoria= new Categoria();
                     aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
                     aux.Precio = (decimal) datos.Lector["Precio"];
                     ImagenManager im = new ImagenManager();
-                    aux.Imagenes= im.buscarImagenesXArticulo(aux.id);
+                    aux.Imagenes= im.buscarImagenesXArticulo(aux.Id);
                     catalogo.Add(aux);
                 }
                 
