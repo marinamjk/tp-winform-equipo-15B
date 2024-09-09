@@ -63,11 +63,23 @@ namespace DBManager
         {
             comando.Parameters.AddWithValue(nombre, valor);
         }
-        public void cerrrarConexion()
+        public object ejecutarEscalar()
         {
-            if (lector != null)
-                lector.Close();
-            conexion.Close();
+            comando.Connection = conexion;
+            try
+            {
+                conexion.Open();
+                // Ejecutar la consulta y devolver el primer valor de la primera fila
+                return comando.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
         }
         public void cerrarConexion()
         {

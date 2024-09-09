@@ -50,12 +50,18 @@ namespace DBManager
             return catalogo;
         }
     
-        public void agregar(Articulo articulo)
+        public int agregar(Articulo articulo)
         {
             AccesoDatos accesoDatos = new AccesoDatos();
             try
             {
-                accesoDatos.setearConsulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) VALUES (@Codigo, @Nombre, @Descripcion,@IdMarca, @IdCategoria, @Precio)");
+                //("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) VALUES (@Codigo, @Nombre, @Descripcion,@IdMarca, @IdCategoria, @Precio)");
+              
+
+                // Insertar el artículo y devolver el ID insertado
+                accesoDatos.setearConsulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) " +
+                                           "OUTPUT INSERTED.Id " +  // Esta línea devuelve el ID del artículo recién creado
+                                           "VALUES (@Codigo, @Nombre, @Descripcion, @IdMarca, @IdCategoria, @Precio)");
 
                 accesoDatos.setearParametros("@Codigo", articulo.Codigo);
                 accesoDatos.setearParametros("@Nombre", articulo.Nombre);
@@ -64,7 +70,11 @@ namespace DBManager
                 accesoDatos.setearParametros("@IdCategoria", articulo.Categoria.id);
                 accesoDatos.setearParametros("@Precio", articulo.Precio);
 
-                accesoDatos.ejecutarAccion();
+                // Ejecutar la consulta y devolver el ID
+                int idArticuloNuevo = (int)accesoDatos.ejecutarEscalar();
+                return idArticuloNuevo;
+
+
             }
             catch (Exception ex)
             {

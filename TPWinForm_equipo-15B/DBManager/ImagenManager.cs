@@ -40,5 +40,28 @@ namespace DBManager
             }
             return imagenes;
         }
+
+        public void agregarImagen(Imagen imagen)
+        {
+            AccesoDatos accesoDatos = new AccesoDatos();
+            try
+            {
+                accesoDatos.setearConsulta("INSERT INTO IMAGENES (IdArticulo, ImagenUrl) VALUES (@IdArticulo, @ImagenUrl)");
+
+                accesoDatos.setearParametros("@IdArticulo", imagen.idArticulo);
+                accesoDatos.setearParametros("@ImagenUrl", imagen.ImagenUrl);
+
+                accesoDatos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                accesoDatos.cerrarConexion();
+            }
+        }
+
     }
 }

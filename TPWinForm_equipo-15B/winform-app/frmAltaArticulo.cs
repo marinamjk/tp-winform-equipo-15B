@@ -33,15 +33,27 @@ namespace winform_app
                 articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
                 articulo.Precio = decimal.Parse(txtPrecio.Text);
 
-                articuloManager.agregar(articulo);
-                MessageBox.Show("Agregado exitosamente");
-                Close(); 
+                // Agregar el artículo y obtener el ID recién creado
+                int idArticuloNuevo = articuloManager.agregar(articulo);
+
+                // Verificar si se ha proporcionado una URL de imagen y agregarla
+                if (!string.IsNullOrEmpty(txtImagenUrl.Text))
+                {
+                    ImagenManager imagenManager = new ImagenManager();
+                    Imagen nuevaImagen = new Imagen
+                    {
+                        idArticulo = idArticuloNuevo,
+                        ImagenUrl = txtImagenUrl.Text
+                    };
+                    imagenManager.agregarImagen(nuevaImagen);
+                }
+
+                MessageBox.Show("Artículo y imagen agregados exitosamente");
+                Close();
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show("Error al agregar el artículo: " + ex.Message);
-
             }
         }
 

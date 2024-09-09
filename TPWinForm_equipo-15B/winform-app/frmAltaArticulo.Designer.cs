@@ -42,6 +42,8 @@
             this.lblCategoria = new System.Windows.Forms.Label();
             this.cboMarca = new System.Windows.Forms.ComboBox();
             this.cboCategoria = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtImagenUrl = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnAceptar
@@ -164,11 +166,29 @@
             this.cboCategoria.Size = new System.Drawing.Size(121, 21);
             this.cboCategoria.TabIndex = 16;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(58, 221);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(42, 13);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Imagen";
+            // 
+            // txtImagenUrl
+            // 
+            this.txtImagenUrl.Location = new System.Drawing.Point(117, 213);
+            this.txtImagenUrl.Name = "txtImagenUrl";
+            this.txtImagenUrl.Size = new System.Drawing.Size(121, 20);
+            this.txtImagenUrl.TabIndex = 18;
+            // 
             // frmAltaArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(310, 341);
+            this.Controls.Add(this.txtImagenUrl);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.cboCategoria);
             this.Controls.Add(this.cboMarca);
             this.Controls.Add(this.lblCategoria);
@@ -208,5 +228,7 @@
         private System.Windows.Forms.Label lblCategoria;
         private System.Windows.Forms.ComboBox cboMarca;
         private System.Windows.Forms.ComboBox cboCategoria;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtImagenUrl;
     }
 }

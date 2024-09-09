@@ -36,7 +36,7 @@ namespace DBManager
             }
             finally
             {
-                datos.cerrrarConexion();
+                datos.cerrarConexion();
             }
         }
     }
