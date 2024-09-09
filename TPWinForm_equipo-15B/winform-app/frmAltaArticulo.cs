@@ -82,5 +82,22 @@ namespace winform_app
                 MessageBox.Show("Error en evento Load AltaArticulo: " + ex.Message);
             }
         }
+
+        private void txtImagenUrl_Leave(object sender, EventArgs e)
+        {
+            cargarImagen(txtImagenUrl.Text);
+        }
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                pbxArticulo.Load(imagen);
+            }
+            catch (Exception ex)
+            {
+                pbxArticulo.Load("https://louisville.edu/history/images/noimage.jpg/");
+            }
+
+        }
     }
 }
