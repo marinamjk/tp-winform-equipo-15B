@@ -50,5 +50,37 @@ namespace DBManager
             return catalogo;
         }
     
+        public void agregar(Articulo articulo)
+        {
+            AccesoDatos accesoDatos = new AccesoDatos();
+            try
+            {
+                accesoDatos.setearConsulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) VALUES (@Codigo, @Nombre, @Descripcion,@IdMarca, @IdCategoria, @Precio)");
+
+                accesoDatos.setearParametros("@Codigo", articulo.Codigo);
+                accesoDatos.setearParametros("@Nombre", articulo.Nombre);
+                accesoDatos.setearParametros("@Descripcion", articulo.Descripcion);
+                accesoDatos.setearParametros("@IdMarca", articulo.Marca.id);
+                accesoDatos.setearParametros("@IdCategoria", articulo.Categoria.id);
+                accesoDatos.setearParametros("@Precio", articulo.Precio);
+
+                accesoDatos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                accesoDatos.cerrarConexion();
+            }
+        }
+
+        public void modificar(Articulo modificar_articulo)
+        {
+
+        }
+    
     }
 }
