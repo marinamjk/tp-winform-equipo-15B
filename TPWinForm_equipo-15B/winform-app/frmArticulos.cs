@@ -68,6 +68,7 @@ namespace winform_app
         {
             frmAltaArticulo alta =new frmAltaArticulo();
             alta.ShowDialog();
+            cargar();
         }
     }
 }

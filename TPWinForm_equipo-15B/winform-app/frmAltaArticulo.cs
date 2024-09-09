@@ -74,13 +74,12 @@ namespace winform_app
 
                 cboCategoria.DataSource = categoriaManager.listar();
                 cboCategoria.ValueMember = "Id";
-                cboCategoria.DisplayMember = "Descripcion";
-
+                cboCategoria.DisplayMember = "Descripcion";   
             }
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Error en evento Load AltaArticulo: " + ex.Message);
             }
         }
     }
