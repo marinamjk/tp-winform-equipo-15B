@@ -156,5 +156,13 @@ namespace winform_app
                 throw ex;
             }
         }
+
+        private void BtOrdenar_Click(object sender, EventArgs e)
+        {
+            List<Articulo> ListaArticulos = new List<Articulo>();
+            ArticuloManager Articulo = new ArticuloManager();
+            Articulo.ordenarLista(ListaArticulos);
+            dgvArticulos.DataSource = ListaArticulos;
+        }
     }
 }
