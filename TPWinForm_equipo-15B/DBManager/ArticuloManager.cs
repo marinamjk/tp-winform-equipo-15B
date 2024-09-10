@@ -124,5 +124,25 @@ namespace DBManager
             }
         }
     
+        public void eliminar(int id) 
+        {
+            try
+            {
+                // Eliminar imágene
+                ImagenManager imagenManager = new ImagenManager();
+                imagenManager.eliminarPorArticulo(id);
+
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("DELETE FROM ARTICULOS WHERE id = @id");
+                datos.setearParametros("@id", id);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }
