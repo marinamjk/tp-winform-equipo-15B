@@ -159,9 +159,28 @@ namespace DBManager
                         if(criterio == "Menor a")
                         {
                             consulta += "Precio <" + filtro;
+                        }else if(criterio == "Mayot a")
+                        {
+                            consulta += "Precio >" + filtro;
+                        }
+                        else
+                        {
+                            consulta += "precio = " + filtro;
                         }
                         break;
-
+                    case "Marca":
+                        if(criterio == "Termina con")
+                        {
+                            consulta += "M.Descripcion like '%" + filtro + "'";
+                        }else if(criterio == "Empieza con")
+                        {
+                            consulta += "M.Descripcion like '" + filtro + "%' ";
+                        }
+                        else
+                        {
+                            consulta += "M.Descripcion like '%" + filtro + "%'";
+                        }
+                        break;
 
                 }
                 datos.setearConsulta(consulta);

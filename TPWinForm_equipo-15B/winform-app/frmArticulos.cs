@@ -145,8 +145,8 @@ namespace winform_app
             ArticuloManager articuloFiltrado = new ArticuloManager();
             try
             {
-                string campo = CbCampo.SelectedText.ToString();
-                string criterio = CbCriterio.SelectedText.ToString();
+                string campo = CbCampo.SelectedItem.ToString();
+                string criterio = CbCriterio.SelectedItem.ToString();
                 string filtro = TbFiltro.Text;
                 dgvArticulos.DataSource = articuloFiltrado.filtrar(campo, criterio, filtro);
             }
