@@ -17,7 +17,7 @@ namespace DBManager
     
             try
             {
-                datos.setearConsulta("SELECT A.Id as ArticuloId, Codigo, Nombre, A.Descripcion, M.Descripcion as Marca, C.Descripcion as Categoria, Precio FROM ARTICULOS A JOIN MARCAS M ON M.Id = A.IdMarca JOIN CATEGORIAS C ON C.Id = A.IdCategoria");
+                datos.setearConsulta("SELECT A.Id as ArticuloId, Codigo, Nombre, A.Descripcion, M.Descripcion as Marca, C.Descripcion as Categoria, A.IdMarca, A.IdCategoria, Precio FROM ARTICULOS A JOIN MARCAS M ON M.Id = A.IdMarca JOIN CATEGORIAS C ON C.Id = A.IdCategoria ");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -27,12 +27,20 @@ namespace DBManager
                     aux.Codigo = (string) datos.Lector["Codigo"];
                     aux.Nombre = (string) datos.Lector["Nombre"];
                     aux.Descripcion = (string) datos.Lector["Descripcion"];
-                    aux.Marca= new Marca();
+                    
+                    aux.Marca = new Marca();
+                    aux.Marca.id = (int)datos.Lector["IdMarca"];
                     aux.Marca.Descripcion = (string)datos.Lector["Marca"];
-                    aux.Categoria= new Categoria();
+                    aux.Categoria = new Categoria();
                     aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
+                    aux.Categoria.id = (int)datos.Lector["IdCategoria"];
+
+                    
+                    
                     aux.Precio = (decimal) datos.Lector["Precio"];
-                   
+
+
+
                     ImagenManager im = new ImagenManager();
                     aux.Imagenes= im.buscarImagenesXArticulo(aux.Id);
                     catalogo.Add(aux);
@@ -88,9 +96,32 @@ namespace DBManager
             }
         }
 
-        public void modificar(Articulo modificar_articulo)
+        public void modificar(Articulo articulo)
         {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update ARTICULOS set Codigo = @Codigo, Nombre = @Nombre, Descripcion = @Descripcion, IdMarca = @IdMarca, IdCategoria = @IdCategoria, Precio = @Precio WHERE Id = @Id");
 
+                datos.setearParametros("@Codigo", articulo.Codigo);
+                datos.setearParametros("@Nombre", articulo.Nombre);
+                datos.setearParametros("@Descripcion", articulo.Descripcion);
+                datos.setearParametros("@IdMarca", articulo.Marca.id);
+                datos.setearParametros("@IdCategoria", articulo.Categoria.id);
+                datos.setearParametros("@Precio", articulo.Precio);
+                datos.setearParametros("@Id", articulo.Id);
+
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
     
     }

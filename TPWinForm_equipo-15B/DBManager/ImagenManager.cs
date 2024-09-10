@@ -62,6 +62,26 @@ namespace DBManager
                 accesoDatos.cerrarConexion();
             }
         }
+        public void modificarImagen(Imagen imagen)
+        {
+            AccesoDatos accesoDatos = new AccesoDatos();
+            try
+            {
+                accesoDatos.setearConsulta("UPDATE IMAGENES SET ImagenUrl = @ImagenUrl WHERE Id = @Id");
+                accesoDatos.setearParametros("@ImagenUrl", imagen.ImagenUrl);
+                accesoDatos.setearParametros("@Id", imagen.id);
+                accesoDatos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                accesoDatos.cerrarConexion();
+            }
+        }
+
 
     }
 }
