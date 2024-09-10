@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 using DBManager;
 using dominio;
@@ -18,6 +19,8 @@ namespace winform_app
         public frmArticulos()
         {
             InitializeComponent();
+            CbCampo.Items.Add("Precio");
+            CbCampo.Items.Add("Marca");
         }
 
         private void frmArticulos_Load(object sender, EventArgs e)
@@ -117,6 +120,41 @@ namespace winform_app
             }
             dgvArticulos.DataSource = null;
             dgvArticulos.DataSource = listaArticulosBuscados;
+        }
+
+        private void CbCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string OpcionCampo = CbCampo.SelectedItem.ToString();
+            if(OpcionCampo == "Precio")
+            {
+                CbCriterio.Items.Clear();
+                CbCriterio.Items.Add("Menor a");
+                CbCriterio.Items.Add("Mayor a");
+                CbCriterio.Items.Add("Igual a");
+            }else
+            {
+                CbCriterio.Items.Clear();
+                CbCriterio.Items.Add("Termina con");
+                CbCriterio.Items.Add("Empieza con");
+                CbCriterio.Items.Add("Exacto");
+            }
+        }
+
+        private void BtFiltrar_Click(object sender, EventArgs e)
+        {
+            ArticuloManager articuloFiltrado = new ArticuloManager();
+            try
+            {
+                string campo = CbCampo.SelectedText.ToString();
+                string criterio = CbCriterio.SelectedText.ToString();
+                string filtro = TbFiltro.Text;
+                dgvArticulos.DataSource = articuloFiltrado.filtrar(campo, criterio, filtro);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }
