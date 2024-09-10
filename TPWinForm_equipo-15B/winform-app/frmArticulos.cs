@@ -102,5 +102,21 @@ namespace winform_app
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        private void TbBusqueda_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            List<Articulo> listaArticulosBuscados;
+            string filtro = TbBusqueda.Text;
+            if (filtro != "")
+            {
+                listaArticulosBuscados = listaArticulos.FindAll(i => i.Nombre.ToUpper().Contains(filtro.ToUpper()));
+            }
+            else
+            {
+                listaArticulosBuscados = listaArticulos;
+            }
+            dgvArticulos.DataSource = null;
+            dgvArticulos.DataSource = listaArticulosBuscados;
+        }
     }
 }

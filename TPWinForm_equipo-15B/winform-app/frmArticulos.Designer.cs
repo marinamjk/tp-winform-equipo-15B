@@ -34,6 +34,8 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.LbBusqueda = new System.Windows.Forms.Label();
+            this.TbBusqueda = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbArticulo)).BeginInit();
             this.SuspendLayout();
@@ -56,7 +58,7 @@
             // pbArticulo
             // 
             this.pbArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbArticulo.Location = new System.Drawing.Point(625, 88);
+            this.pbArticulo.Location = new System.Drawing.Point(646, 88);
             this.pbArticulo.Margin = new System.Windows.Forms.Padding(2);
             this.pbArticulo.Name = "pbArticulo";
             this.pbArticulo.Size = new System.Drawing.Size(391, 296);
@@ -107,11 +109,30 @@
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
+            // LbBusqueda
+            // 
+            this.LbBusqueda.AutoSize = true;
+            this.LbBusqueda.Location = new System.Drawing.Point(24, 57);
+            this.LbBusqueda.Name = "LbBusqueda";
+            this.LbBusqueda.Size = new System.Drawing.Size(55, 13);
+            this.LbBusqueda.TabIndex = 7;
+            this.LbBusqueda.Text = "Busqueda";
+            // 
+            // TbBusqueda
+            // 
+            this.TbBusqueda.Location = new System.Drawing.Point(86, 57);
+            this.TbBusqueda.Name = "TbBusqueda";
+            this.TbBusqueda.Size = new System.Drawing.Size(243, 20);
+            this.TbBusqueda.TabIndex = 8;
+            this.TbBusqueda.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbBusqueda_KeyPress);
+            // 
             // frmArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1025, 437);
+            this.ClientSize = new System.Drawing.Size(1046, 474);
+            this.Controls.Add(this.TbBusqueda);
+            this.Controls.Add(this.LbBusqueda);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAgregar);
@@ -139,5 +160,7 @@
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Label LbBusqueda;
+        private System.Windows.Forms.TextBox TbBusqueda;
     }
 }
