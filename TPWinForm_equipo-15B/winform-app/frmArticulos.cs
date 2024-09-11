@@ -159,10 +159,18 @@ namespace winform_app
 
         private void BtOrdenar_Click(object sender, EventArgs e)
         {
-            List<Articulo> ListaArticulos = new List<Articulo>();
+            List<Articulo> lista = new List<Articulo>();
             ArticuloManager Articulo = new ArticuloManager();
-            Articulo.ordenarLista(ListaArticulos);
-            dgvArticulos.DataSource = ListaArticulos;
+            lista = Articulo.ordenarLista(listaArticulos);
+            dgvArticulos.DataSource = lista;
+        }
+
+        private void BTOrdenaralfabetico_Click(object sender, EventArgs e)
+        {
+            List<Articulo> lista = new List<Articulo>();
+            ArticuloManager Articulo = new ArticuloManager();
+            lista = Articulo.ordenarListaAlfabeto(listaArticulos);
+            dgvArticulos.DataSource = lista;
         }
     }
 }

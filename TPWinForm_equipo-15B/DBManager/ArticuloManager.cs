@@ -148,22 +148,14 @@ namespace DBManager
 
         public List<Articulo> ordenarLista(List<Articulo> listaArticulos)
         {
-            List<Articulo> listaOrdenada;
-            int tope = listaArticulos.Capacity;
-            for(int i = 0; i < tope; i++)
-            {
-                decimal menorActual = listaArticulos[i].Precio;
-                for (int j = i; j < tope; j++)
-                {
-                    if (menorActual > listaArticulos[j].Precio)
-                    {
-                        menorActual = listaArticulos[j].Precio;
-                    }
-                }
-                listaOrdenada.Add(listaArticulos[i]);
-            }
-            return listaOrdenada;
+            return listaArticulos.OrderBy(a => a.Precio).ToList();
         }
+
+        public List<Articulo> ordenarListaAlfabeto(List<Articulo> listaArticulos)
+        {
+            return listaArticulos.OrderByDescending(x => x.Marca).ToList();
+        }
+
         public List<Articulo> filtrar(string campo,string criterio,string filtro)
         {
             List<Articulo> ListaFiltrada = new List<Articulo>();

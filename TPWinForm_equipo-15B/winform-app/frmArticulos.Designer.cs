@@ -43,7 +43,8 @@
             this.LbFiltro = new System.Windows.Forms.Label();
             this.TbFiltro = new System.Windows.Forms.TextBox();
             this.BtFiltrar = new System.Windows.Forms.Button();
-            this.BtOrdenar = new System.Windows.Forms.Button();
+            this.BtOrdenarPrecio = new System.Windows.Forms.Button();
+            this.BTOrdenaralfabetico = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbArticulo)).BeginInit();
             this.SuspendLayout();
@@ -195,22 +196,33 @@
             this.BtFiltrar.UseVisualStyleBackColor = true;
             this.BtFiltrar.Click += new System.EventHandler(this.BtFiltrar_Click);
             // 
-            // BtOrdenar
+            // BtOrdenarPrecio
             // 
-            this.BtOrdenar.Location = new System.Drawing.Point(434, 37);
-            this.BtOrdenar.Name = "BtOrdenar";
-            this.BtOrdenar.Size = new System.Drawing.Size(129, 46);
-            this.BtOrdenar.TabIndex = 16;
-            this.BtOrdenar.Text = "Ordenar";
-            this.BtOrdenar.UseVisualStyleBackColor = true;
-            this.BtOrdenar.Click += new System.EventHandler(this.BtOrdenar_Click);
+            this.BtOrdenarPrecio.Location = new System.Drawing.Point(434, 37);
+            this.BtOrdenarPrecio.Name = "BtOrdenarPrecio";
+            this.BtOrdenarPrecio.Size = new System.Drawing.Size(129, 46);
+            this.BtOrdenarPrecio.TabIndex = 16;
+            this.BtOrdenarPrecio.Text = "Ordenar por precio";
+            this.BtOrdenarPrecio.UseVisualStyleBackColor = true;
+            this.BtOrdenarPrecio.Click += new System.EventHandler(this.BtOrdenar_Click);
+            // 
+            // BTOrdenaralfabetico
+            // 
+            this.BTOrdenaralfabetico.Location = new System.Drawing.Point(569, 37);
+            this.BTOrdenaralfabetico.Name = "BTOrdenaralfabetico";
+            this.BTOrdenaralfabetico.Size = new System.Drawing.Size(115, 46);
+            this.BTOrdenaralfabetico.TabIndex = 17;
+            this.BTOrdenaralfabetico.Text = "Ordenar alfabeticamente";
+            this.BTOrdenaralfabetico.UseVisualStyleBackColor = true;
+            this.BTOrdenaralfabetico.Click += new System.EventHandler(this.BTOrdenaralfabetico_Click);
             // 
             // frmArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1046, 488);
-            this.Controls.Add(this.BtOrdenar);
+            this.Controls.Add(this.BTOrdenaralfabetico);
+            this.Controls.Add(this.BtOrdenarPrecio);
             this.Controls.Add(this.BtFiltrar);
             this.Controls.Add(this.TbFiltro);
             this.Controls.Add(this.LbFiltro);
@@ -256,6 +268,7 @@
         private System.Windows.Forms.Label LbFiltro;
         private System.Windows.Forms.TextBox TbFiltro;
         private System.Windows.Forms.Button BtFiltrar;
-        private System.Windows.Forms.Button BtOrdenar;
+        private System.Windows.Forms.Button BtOrdenarPrecio;
+        private System.Windows.Forms.Button BTOrdenaralfabetico;
     }
 }
