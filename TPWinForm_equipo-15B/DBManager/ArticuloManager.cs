@@ -153,7 +153,7 @@ namespace DBManager
 
         public List<Articulo> ordenarListaAlfabeto(List<Articulo> listaArticulos)
         {
-            return listaArticulos.OrderByDescending(x => x.Marca).ToList();
+            return listaArticulos.OrderBy(x => x.Marca.ToString()).ToList();
         }
 
         public List<Articulo> filtrar(string campo,string criterio,string filtro)
