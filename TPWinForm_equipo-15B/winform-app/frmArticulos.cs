@@ -10,12 +10,14 @@ using System.Web;
 using System.Windows.Forms;
 using DBManager;
 using dominio;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace winform_app
 {
     public partial class frmArticulos : Form
     {
         private List<Articulo> listaArticulos;
+        int nroImagen;
         public frmArticulos()
         {
             InitializeComponent();
@@ -25,18 +27,27 @@ namespace winform_app
 
         private void frmArticulos_Load(object sender, EventArgs e)
         {
+            btnSiguiente.Enabled = false;
+            btnAnterior.Enabled = false;
             cargar();            
-            
         }
 
         private void dgbArticulos_SelectionChanged(object sender, EventArgs e)
         {
+            nroImagen = 0;
+
             if(dgvArticulos.CurrentRow != null)
             {
                 Articulo seleccionado = (Articulo) dgvArticulos.CurrentRow.DataBoundItem;
-                cargarImagen(seleccionado.Imagenes[0].ImagenUrl);
+                if (seleccionado.Imagenes.Count > 0)
+                {
+                    cargarImagen(seleccionado.Imagenes[nroImagen].ImagenUrl);
+                } else
+                {
+                    cargarImagen("https://louisville.edu/history/images/noimage.jpg/");
+                }
+                habilitarControles();
             }
-                   
         }
 
         private void cargar()
@@ -46,8 +57,7 @@ namespace winform_app
             {
                 listaArticulos = articuloManager.listar();
                 dgvArticulos.DataSource = listaArticulos;
-                dgvArticulos.Columns["id"].Visible = false;
-                pbArticulo.Load(listaArticulos[0].Imagenes[0].ImagenUrl);
+                dgvArticulos.Columns["id"].Visible = false;  
             }
             catch (Exception ex)
             {
@@ -171,6 +181,47 @@ namespace winform_app
             ArticuloManager Articulo = new ArticuloManager();
             lista = Articulo.ordenarListaAlfabeto(listaArticulos);
             dgvArticulos.DataSource = lista;
+        }
+
+        private void btnSiguiente_Click(object sender, EventArgs e)
+        {
+            nroImagen++;
+            Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            cargarImagen(seleccionado.Imagenes[nroImagen].ImagenUrl);
+            habilitarControles();
+        }
+
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            nroImagen--;
+
+            Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            cargarImagen(seleccionado.Imagenes[nroImagen].ImagenUrl);
+            habilitarControles();
+        }
+
+        private void habilitarControles()
+        {
+            Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+            if (seleccionado.Imagenes.Count > 0 && nroImagen < seleccionado.Imagenes.Count-1)
+            {
+                btnSiguiente.Enabled = true;
+            }
+            else
+            {
+                btnSiguiente.Enabled = false;
+            }
+
+            if (nroImagen > 0)
+                
+            {
+                btnAnterior.Enabled = true;
+            }
+            else
+            {
+                btnAnterior.Enabled = false;
+            }
         }
     }
 }
