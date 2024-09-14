@@ -30,7 +30,7 @@ namespace DBManager
                     aux.Descripcion = (string) datos.Lector["Descripcion"];
                     
                     aux.Marca = new Marca();
-                    aux.Marca.id = (int)datos.Lector["IdMarca"];
+                    aux.Marca.Id = (int)datos.Lector["IdMarca"];
                     aux.Marca.Descripcion = (string)datos.Lector["Marca"];
                     aux.Categoria = new Categoria();
                     aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
@@ -76,7 +76,7 @@ namespace DBManager
                 accesoDatos.setearParametros("@Codigo", articulo.Codigo);
                 accesoDatos.setearParametros("@Nombre", articulo.Nombre);
                 accesoDatos.setearParametros("@Descripcion", articulo.Descripcion);
-                accesoDatos.setearParametros("@IdMarca", articulo.Marca.id);
+                accesoDatos.setearParametros("@IdMarca", articulo.Marca.Id);
                 accesoDatos.setearParametros("@IdCategoria", articulo.Categoria.id);
                 accesoDatos.setearParametros("@Precio", articulo.Precio);
 
@@ -107,7 +107,7 @@ namespace DBManager
                 datos.setearParametros("@Codigo", articulo.Codigo);
                 datos.setearParametros("@Nombre", articulo.Nombre);
                 datos.setearParametros("@Descripcion", articulo.Descripcion);
-                datos.setearParametros("@IdMarca", articulo.Marca.id);
+                datos.setearParametros("@IdMarca", articulo.Marca.Id);
                 datos.setearParametros("@IdCategoria", articulo.Categoria.id);
                 datos.setearParametros("@Precio", articulo.Precio);
                 datos.setearParametros("@Id", articulo.Id);
@@ -204,7 +204,7 @@ namespace DBManager
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
 
                     aux.Marca = new Marca();
-                    aux.Marca.id = (int)datos.Lector["IdMarca"];
+                    aux.Marca.Id = (int)datos.Lector["IdMarca"];
                     aux.Marca.Descripcion = (string)datos.Lector["Marca"];
                     aux.Categoria = new Categoria();
                     aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];

@@ -16,5 +16,35 @@ namespace winform_app
         {
             InitializeComponent();
         }
+
+        private void verCatálogoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (var item in Application.OpenForms)
+            {
+                if (item.GetType() == typeof(frmArticulos))
+                {
+                    MessageBox.Show("La ventana de Artículos ya se encuentra abierta.");
+                    return;
+                }
+            }
+            frmArticulos ventanaArticulos= new frmArticulos();
+            ventanaArticulos.MdiParent = this;
+            ventanaArticulos.Show();
+        }
+
+        private void verListadoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (var item in Application.OpenForms)
+            {
+                if (item.GetType() == typeof(frmMarcas))
+                {
+                    MessageBox.Show("La ventana de Marcas ya se encuentra abierta.");
+                    return;
+                }
+            }
+            frmMarcas ventanaMarcas = new frmMarcas();
+            ventanaMarcas.MdiParent = this;
+            ventanaMarcas.Show();
+        }
     }
 }
