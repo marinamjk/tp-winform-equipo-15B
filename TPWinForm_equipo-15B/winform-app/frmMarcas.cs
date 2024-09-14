@@ -58,13 +58,27 @@ namespace winform_app
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             MarcaManager marcaManagaer = new MarcaManager();
+            ArticuloManager artManager = new ArticuloManager();
+            List<Articulo> articulos;
+
             Marca seleccionada;
+
             try
             {
+                articulos = artManager.listar();
+                seleccionada = (Marca)dgvMarcas.CurrentRow.DataBoundItem;
+                foreach (var item in articulos)
+                {
+                    if (item.Marca.Id == seleccionada.Id)
+                    {
+                        MessageBox.Show("No se puede eliminar esta marca porque hay productos asociados.");
+                        return;
+                    }
+                }
                 DialogResult respuesta = MessageBox.Show("¿Está seguro que desea eliminar esta marca?", "Eliminando", MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+                
                 if(respuesta == DialogResult.Yes)
                 {
-                    seleccionada = (Marca)dgvMarcas.CurrentRow.DataBoundItem;
                     marcaManagaer.eliminar(seleccionada.Id);
                     cargar();
                 }

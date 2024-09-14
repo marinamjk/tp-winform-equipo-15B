@@ -36,11 +36,7 @@ namespace DBManager
                     aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
                     aux.Categoria.id = (int)datos.Lector["IdCategoria"];
 
-                    
-                    
                     aux.Precio = (decimal) datos.Lector["Precio"];
-
-
 
                     ImagenManager im = new ImagenManager();
                     aux.Imagenes= im.buscarImagenesXArticulo(aux.Id);

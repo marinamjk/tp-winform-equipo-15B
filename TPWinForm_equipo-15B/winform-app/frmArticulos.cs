@@ -42,10 +42,8 @@ namespace winform_app
                 if (seleccionado.Imagenes.Count > 0)
                 {
                     cargarImagen(seleccionado.Imagenes[nroImagen].ImagenUrl);
-                } else
-                {
-                    cargarImagen("https://louisville.edu/history/images/noimage.jpg/");
-                }
+                } 
+
                 habilitarControles();
             }
         }
@@ -57,7 +55,7 @@ namespace winform_app
             {
                 listaArticulos = articuloManager.listar();
                 dgvArticulos.DataSource = listaArticulos;
-                dgvArticulos.Columns["id"].Visible = false;  
+                dgvArticulos.Columns["id"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -99,7 +97,7 @@ namespace winform_app
             Articulo seleccionado;
             try
             {
-                DialogResult respuesta = MessageBox.Show("¿Desea eliminar el registro e la base de datos?","Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult respuesta = MessageBox.Show("¿Desea eliminar el registro de la base de datos?","Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 
                 if(respuesta == DialogResult.Yes)
                 {
@@ -130,6 +128,8 @@ namespace winform_app
             }
             dgvArticulos.DataSource = null;
             dgvArticulos.DataSource = listaArticulosBuscados;
+            //ocultar columnas que no quiero que se vean.. como el id
+            //evento Text_Changed parece mejor..
         }
 
         private void CbCampo_SelectedIndexChanged(object sender, EventArgs e)

@@ -48,6 +48,7 @@
             // 
             this.txtAgregar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAgregar.Location = new System.Drawing.Point(209, 81);
+            this.txtAgregar.MaxLength = 50;
             this.txtAgregar.Name = "txtAgregar";
             this.txtAgregar.Size = new System.Drawing.Size(440, 26);
             this.txtAgregar.TabIndex = 1;
