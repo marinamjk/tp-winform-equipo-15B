@@ -223,5 +223,14 @@ namespace winform_app
                 btnAnterior.Enabled = false;
             }
         }
+
+        private void btnDetalles_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            frmDetalle detalle = new frmDetalle(seleccionado);
+            detalle.ShowDialog();
+            cargar();
+        }
     }
 }
