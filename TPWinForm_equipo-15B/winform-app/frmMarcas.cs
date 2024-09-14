@@ -32,6 +32,7 @@ namespace winform_app
             {
                 List<Marca> marcas = marcaManager.listar();
                 dgvMarcas.DataSource = marcas;
+                dgvMarcas.Columns["id"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -52,6 +53,27 @@ namespace winform_app
             frmAltaMarca modificarMarca = new frmAltaMarca(marcaSeleccionada);
             modificarMarca.ShowDialog();
             cargar();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            MarcaManager marcaManagaer = new MarcaManager();
+            Marca seleccionada;
+            try
+            {
+                DialogResult respuesta = MessageBox.Show("¿Está seguro que desea eliminar esta marca?", "Eliminando", MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+                if(respuesta == DialogResult.Yes)
+                {
+                    seleccionada = (Marca)dgvMarcas.CurrentRow.DataBoundItem;
+                    marcaManagaer.eliminar(seleccionada.Id);
+                    cargar();
+                }
+        
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }
