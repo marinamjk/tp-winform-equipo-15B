@@ -215,5 +215,28 @@ namespace winform_app
                 pbxArticulo.Load("https://louisville.edu/history/images/noimage.jpg/");
             }
         }
+
+        private void dgvImagenes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dgvImagenes.Columns["Eliminar"].Index && e.RowIndex >= 0)
+            {
+                DialogResult result = MessageBox.Show("¿Estás seguro de que quieres eliminar esta imagen?", "Confirmar eliminación", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    // Obtener el objeto de la fila seleccionada
+                    Imagen imagenAEliminar = (Imagen)dgvImagenes.Rows[e.RowIndex].DataBoundItem;
+
+                    // Eliminar el objeto de la base de datos
+                    ImagenManager imagenManager = new ImagenManager();
+                    imagenManager.eliminarImagen(imagenAEliminar.id);
+
+                    // Actualizar la lista de imágenes y volver a asignar el DataSource
+                    listaImagenes.Remove(imagenAEliminar);
+                    dgvImagenes.DataSource = null; // Limpiar el DataGridView
+                    dgvImagenes.DataSource = listaImagenes; // Asignar la lista actualizada
+                }
+            }
+        }
     }
+    
 }

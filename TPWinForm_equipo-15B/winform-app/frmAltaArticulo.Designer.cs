@@ -47,6 +47,7 @@
             this.pbxArticulo = new System.Windows.Forms.PictureBox();
             this.btnAgregarImagenes = new System.Windows.Forms.Button();
             this.dgvImagenes = new System.Windows.Forms.DataGridView();
+            this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvImagenes)).BeginInit();
             this.SuspendLayout();
@@ -210,10 +211,22 @@
             // dgvImagenes
             // 
             this.dgvImagenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvImagenes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Eliminar});
             this.dgvImagenes.Location = new System.Drawing.Point(519, 36);
             this.dgvImagenes.Name = "dgvImagenes";
             this.dgvImagenes.Size = new System.Drawing.Size(240, 185);
             this.dgvImagenes.TabIndex = 21;
+            this.dgvImagenes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvImagenes_CellClick);
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.FillWeight = 50F;
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.Text = "X";
+            this.Eliminar.UseColumnTextForButtonValue = true;
+            this.Eliminar.Width = 50;
             // 
             // frmAltaArticulo
             // 
@@ -271,5 +284,6 @@
         private System.Windows.Forms.PictureBox pbxArticulo;
         private System.Windows.Forms.Button btnAgregarImagenes;
         private System.Windows.Forms.DataGridView dgvImagenes;
+        private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
     }
 }
