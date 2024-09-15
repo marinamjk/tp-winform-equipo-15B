@@ -63,7 +63,7 @@
             // verCatálogoToolStripMenuItem
             // 
             this.verCatálogoToolStripMenuItem.Name = "verCatálogoToolStripMenuItem";
-            this.verCatálogoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.verCatálogoToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.verCatálogoToolStripMenuItem.Text = "Ver Catálogo";
             this.verCatálogoToolStripMenuItem.Click += new System.EventHandler(this.verCatálogoToolStripMenuItem_Click);
             // 
@@ -78,7 +78,7 @@
             // verListadoToolStripMenuItem
             // 
             this.verListadoToolStripMenuItem.Name = "verListadoToolStripMenuItem";
-            this.verListadoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.verListadoToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.verListadoToolStripMenuItem.Text = "Ver Listado";
             this.verListadoToolStripMenuItem.Click += new System.EventHandler(this.verListadoToolStripMenuItem_Click);
             // 
@@ -93,7 +93,7 @@
             // verListadoToolStripMenuItem1
             // 
             this.verListadoToolStripMenuItem1.Name = "verListadoToolStripMenuItem1";
-            this.verListadoToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.verListadoToolStripMenuItem1.Size = new System.Drawing.Size(131, 22);
             this.verListadoToolStripMenuItem1.Text = "Ver Listado";
             this.verListadoToolStripMenuItem1.Click += new System.EventHandler(this.verListadoToolStripMenuItem1_Click);
             // 
@@ -104,7 +104,7 @@
             this.ClientSize = new System.Drawing.Size(808, 402);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(824, 441);
             this.Name = "frmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

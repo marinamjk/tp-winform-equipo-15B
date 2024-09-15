@@ -161,9 +161,9 @@ namespace winform_app
                 dgvArticulos.DataSource = articuloFiltrado.filtrar(campo, criterio, filtro);
             }
             catch (Exception ex)
-            {
 
-                throw ex;
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
 
