@@ -165,7 +165,7 @@ namespace DBManager
                         if(criterio == "Menor a")
                         {
                             consulta += "Precio <" + filtro;
-                        }else if(criterio == "Mayot a")
+                        }else if(criterio == "Mayor a")
                         {
                             consulta += "Precio >" + filtro;
                         }
