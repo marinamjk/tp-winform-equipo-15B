@@ -17,6 +17,7 @@ namespace winform_app
         public frmMarcas()
         {
             InitializeComponent();
+
         }
           
         private void frmMarcas_Load(object sender, EventArgs e)

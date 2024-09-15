@@ -142,14 +142,28 @@ namespace DBManager
             }
         }
 
-        public List<Articulo> ordenarLista(List<Articulo> listaArticulos)
+        public List<Articulo> ordenarLista(List<Articulo> listaArticulos,string TipoOrden)
         {
-            return listaArticulos.OrderBy(a => a.Precio).ToList();
+            if(TipoOrden == "Menor a mayor")
+            {
+                return listaArticulos.OrderBy(a => a.Precio).ToList();
+            }
+            else
+            {
+                return listaArticulos.OrderByDescending(a => a.Precio).ToList();
+            }
         }
 
-        public List<Articulo> ordenarListaAlfabeto(List<Articulo> listaArticulos)
+        public List<Articulo> ordenarListaAlfabeto(List<Articulo> listaArticulos,string TipoOrden)
         {
-            return listaArticulos.OrderBy(x => x.Marca.ToString()).ToList();
+            if(TipoOrden == "Alfabeticamente de A-Z")
+            {
+                return listaArticulos.OrderBy(x => x.Marca.ToString()).ToList();
+            }
+            else
+            {
+                return listaArticulos.OrderByDescending(x => x.Marca.ToString()).ToList();
+            }
         }
 
         public List<Articulo> filtrar(string campo,string criterio,string filtro)

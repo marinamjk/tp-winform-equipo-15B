@@ -21,6 +21,10 @@ namespace winform_app
         public frmArticulos()
         {
             InitializeComponent();
+            CbPrecio.Items.Add("Mayor a menor");
+            CbPrecio.Items.Add("Menor a mayor");
+            CbMarca.Items.Add("Alfabeticamente de A-Z");
+            CbMarca.Items.Add("Alfabeticamente de Z-A");
             CbCampo.Items.Add("Precio");
             CbCampo.Items.Add("Marca");
         }
@@ -184,18 +188,34 @@ namespace winform_app
 
         private void BtOrdenar_Click(object sender, EventArgs e)
         {
+            string TipoOrden = CbPrecio.Text.ToString();
             List<Articulo> lista = new List<Articulo>();
             ArticuloManager Articulo = new ArticuloManager();
-            lista = Articulo.ordenarLista(listaArticulos);
-            dgvArticulos.DataSource = lista;
+            if(TipoOrden == "")
+            {
+                MessageBox.Show("NO HAY FILTRO DE BUSQUEDA INGRESADO");
+            }
+            else
+            {
+                lista = Articulo.ordenarLista(listaArticulos,TipoOrden);
+                dgvArticulos.DataSource = lista;
+            }
         }
 
         private void BTOrdenaralfabetico_Click(object sender, EventArgs e)
         {
+            string TipoOrden = CbMarca.Text.ToString();
             List<Articulo> lista = new List<Articulo>();
             ArticuloManager Articulo = new ArticuloManager();
-            lista = Articulo.ordenarListaAlfabeto(listaArticulos);
-            dgvArticulos.DataSource = lista;
+            if(TipoOrden == "")
+            {
+                MessageBox.Show("NO HAY FILTRO DE BUSQUEDA INGRESADO");
+            }
+            else
+            {
+                lista = Articulo.ordenarListaAlfabeto(listaArticulos,TipoOrden);
+                dgvArticulos.DataSource = lista;
+            }
         }
 
         private void btnSiguiente_Click(object sender, EventArgs e)
