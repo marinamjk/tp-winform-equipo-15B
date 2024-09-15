@@ -40,6 +40,66 @@ namespace DBManager
             datos.cerrarConexion();
         }
     }
-  }
+        public void agregar(Categoria categoria) // no se si es mejor mandar el string antes que un objeto
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("Insert Into CATEGORIAS (Descripcion) Values (@Descripcion)");
+                datos.setearParametros("@Descripcion", categoria.Descripcion);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void modificar(Categoria categoria)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("Update CATEGORIAS Set Descripcion = @Descripcion where id= @id");
+                datos.setearParametros("@Descripcion", categoria.Descripcion);
+                datos.setearParametros("@id", categoria.id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void eliminar(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("DELETE from CATEGORIAS WHERE id= @id");
+                datos.setearParametros("@id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+    }
 
 }
