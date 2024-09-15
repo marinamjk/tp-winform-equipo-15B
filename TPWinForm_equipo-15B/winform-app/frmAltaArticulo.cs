@@ -169,6 +169,12 @@ namespace winform_app
                     listaImagenes = imagenManager.buscarImagenesXArticulo(articulo.Id);
                     dgvImagenes.DataSource = null; // Limpiar el DataGridView
                     dgvImagenes.DataSource = listaImagenes; // aasignar la lista de imágenes existentes
+
+                    // Si existen imágenes, cargar la primera en el PictureBox
+                    if (listaImagenes.Count > 0)
+                    {
+                        cargarImagen(listaImagenes[0].ImagenUrl);  // Cargar la primera imagen
+                    }
                 }
             }
             catch (Exception ex)
@@ -218,6 +224,7 @@ namespace winform_app
 
         private void dgvImagenes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Verificar si se ha hecho clic en la columna "Eliminar"
             if (e.ColumnIndex == dgvImagenes.Columns["Eliminar"].Index && e.RowIndex >= 0)
             {
                 DialogResult result = MessageBox.Show("¿Estás seguro de que quieres eliminar esta imagen?", "Confirmar eliminación", MessageBoxButtons.YesNo);
@@ -232,9 +239,26 @@ namespace winform_app
 
                     // Actualizar la lista de imágenes y volver a asignar el DataSource
                     listaImagenes.Remove(imagenAEliminar);
-                    dgvImagenes.DataSource = null; // Limpiar el DataGridView
-                    dgvImagenes.DataSource = listaImagenes; // Asignar la lista actualizada
+                    dgvImagenes.DataSource = null;
+                    dgvImagenes.DataSource = listaImagenes; 
+
+                    // Precargar la primera imagen de la lista si la lista no está vacía
+                    if (listaImagenes.Count > 0)
+                    {
+                        cargarImagen(listaImagenes[0].ImagenUrl);  // Cargar la primera imagen en el PictureBox
+                    }
+                    else
+                    {
+                        // Si no quedan imágenes, cargar una imagen por defecto
+                        cargarImagen("https://louisville.edu/history/images/noimage.jpg");
+                    }
                 }
+            }
+            else if (e.RowIndex >= 0)
+            {
+                // carga la imagen seleccionada y la cargarla en el PictureBox
+                Imagen imagenSeleccionada = (Imagen)dgvImagenes.Rows[e.RowIndex].DataBoundItem;
+                cargarImagen(imagenSeleccionada.ImagenUrl);
             }
         }
     }
