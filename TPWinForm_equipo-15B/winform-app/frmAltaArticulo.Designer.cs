@@ -45,7 +45,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtImagenUrl = new System.Windows.Forms.TextBox();
             this.pbxArticulo = new System.Windows.Forms.PictureBox();
+            this.btnAgregarImagenes = new System.Windows.Forms.Button();
+            this.dgvImagenes = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvImagenes)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAceptar
@@ -179,7 +182,7 @@
             // 
             // txtImagenUrl
             // 
-            this.txtImagenUrl.Location = new System.Drawing.Point(117, 146);
+            this.txtImagenUrl.Location = new System.Drawing.Point(117, 148);
             this.txtImagenUrl.Name = "txtImagenUrl";
             this.txtImagenUrl.Size = new System.Drawing.Size(121, 20);
             this.txtImagenUrl.TabIndex = 5;
@@ -194,11 +197,31 @@
             this.pbxArticulo.TabIndex = 19;
             this.pbxArticulo.TabStop = false;
             // 
+            // btnAgregarImagenes
+            // 
+            this.btnAgregarImagenes.Location = new System.Drawing.Point(244, 148);
+            this.btnAgregarImagenes.Name = "btnAgregarImagenes";
+            this.btnAgregarImagenes.Size = new System.Drawing.Size(23, 23);
+            this.btnAgregarImagenes.TabIndex = 20;
+            this.btnAgregarImagenes.Text = "+";
+            this.btnAgregarImagenes.UseVisualStyleBackColor = true;
+            this.btnAgregarImagenes.Click += new System.EventHandler(this.btnAgregarImagenes_Click);
+            // 
+            // dgvImagenes
+            // 
+            this.dgvImagenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvImagenes.Location = new System.Drawing.Point(519, 36);
+            this.dgvImagenes.Name = "dgvImagenes";
+            this.dgvImagenes.Size = new System.Drawing.Size(240, 185);
+            this.dgvImagenes.TabIndex = 21;
+            // 
             // frmAltaArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(556, 306);
+            this.ClientSize = new System.Drawing.Size(829, 306);
+            this.Controls.Add(this.dgvImagenes);
+            this.Controls.Add(this.btnAgregarImagenes);
             this.Controls.Add(this.pbxArticulo);
             this.Controls.Add(this.txtImagenUrl);
             this.Controls.Add(this.label5);
@@ -221,6 +244,7 @@
             this.Text = "frmAltaArticulo";
             this.Load += new System.EventHandler(this.frmAltaArticulo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvImagenes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -245,5 +269,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtImagenUrl;
         private System.Windows.Forms.PictureBox pbxArticulo;
+        private System.Windows.Forms.Button btnAgregarImagenes;
+        private System.Windows.Forms.DataGridView dgvImagenes;
     }
 }

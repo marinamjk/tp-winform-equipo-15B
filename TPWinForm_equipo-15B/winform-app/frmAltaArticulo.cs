@@ -15,10 +15,13 @@ namespace winform_app
     public partial class frmAltaArticulo : Form
     {
         private Articulo articulo = null;
+        private List<Imagen> listaImagenes = new List<Imagen>(); // Lista de imágenes temporal
+
         public frmAltaArticulo()
         {
             InitializeComponent();
         }
+
         public frmAltaArticulo(Articulo articulo)
         {
             InitializeComponent();
@@ -26,6 +29,29 @@ namespace winform_app
             Text = "Modificar Articulo";
         }
 
+        private void guadarImagen(int idArticulo)
+        {
+            ImagenManager imagenManager = new ImagenManager();
+
+            // Recorre la lista y guarda cada imagen
+            foreach (Imagen imagen in listaImagenes)
+            {
+                imagen.idArticulo = idArticulo; // Asigna el id del artículo
+
+                List<Imagen> imagenesExistentes = imagenManager.buscarImagenesXArticulo(idArticulo);
+                if (imagen.id > 0)
+                {
+                    // Si ya existe una imagen(solo tomo la primera en este caso)
+                    //imagen.id = imagenesExistentes[0].id;
+                    imagenManager.modificarImagen(imagen);
+                }
+                else
+                {
+                    // Si no existe, agregar una nueva
+                    imagenManager.agregarImagen(imagen);
+                }
+            }
+        }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
@@ -38,6 +64,13 @@ namespace winform_app
                 if (articulo == null)
                     articulo = new Articulo();
 
+                // Valida campos obligatorios
+                if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtCodigo.Text))
+                {
+                    MessageBox.Show("Por favor, complete todos los campos obligatorios.");
+                    return;
+                }
+
                 articulo.Codigo = txtCodigo.Text;
                 articulo.Nombre = txtNombre.Text;
                 articulo.Descripcion = txtDescripcion.Text;
@@ -49,42 +82,23 @@ namespace winform_app
                 {
                     articuloManager.modificar(articulo);
                     idArticulo = articulo.Id; // Usar el ID del artículo modificado
-                    MessageBox.Show("Artículo modificado exitosamente");
+
+                    // Recupera las imágenes existentes para el artículo
+                    var imagenesExistentes = imagenManager.buscarImagenesXArticulo(idArticulo);
+
+                    // Agregar las nuevas imágenes a la lista de imágenes
+                    listaImagenes.AddRange(imagenesExistentes);
                 }
                 else // Si no tiene Id, es un artículo nuevo
                 {
                     // Agregar el artículo y obtener el ID recién creado
                     idArticulo = articuloManager.agregar(articulo);
                     articulo.Id = idArticulo; // Asignar el nuevo Id al artículo
-                    MessageBox.Show("Artículo agregado exitosamente");
                 }
 
-                // Verificar si se ha proporcionado una URL de imagen
-                if (!string.IsNullOrEmpty(txtImagenUrl.Text))
-                {
-                    Imagen nuevaImagen = new Imagen
-                    {
-                        idArticulo = idArticulo,
-                        ImagenUrl = txtImagenUrl.Text
-                    };
-
-                    // Verificar si el artículo ya tiene una imagen asociada
-                    List<Imagen> imagenesExistentes = imagenManager.buscarImagenesXArticulo(idArticulo);
-                    if (imagenesExistentes != null && imagenesExistentes.Count > 0)
-                    {
-                        // Si ya existe una imagen, modificarla (solo tomo la primera en este caso)
-                        nuevaImagen.id = imagenesExistentes[0].id;
-                        imagenManager.modificarImagen(nuevaImagen);
-                        MessageBox.Show("Imagen modificada exitosamente");
-                    }
-                    else
-                    {
-                        // Si no existe, agregar una nueva
-                        imagenManager.agregarImagen(nuevaImagen);
-                        MessageBox.Show("Imagen agregada exitosamente");
-                    }
-                }
-
+                // Guardamos las imágenes asociadas al artículo
+                guadarImagen(idArticulo);
+                MessageBox.Show("Artículo guardado exitosamente.");
                 Close();
             }
             catch (Exception ex)
@@ -105,13 +119,33 @@ namespace winform_app
             ImagenManager imagenManager = new ImagenManager();
             try
             {
-                cboMarca.DataSource = marcaManager.listar();
-                cboMarca.ValueMember = "Id";
-                cboMarca.DisplayMember = "Descripcion";
+                // Cargar Marcas
+                var marcas = marcaManager.listar();
+                if (marcas != null && marcas.Count > 0)
+                {
+                    cboMarca.DataSource = marcas;
+                    cboMarca.ValueMember = "Id";
+                    cboMarca.DisplayMember = "Descripcion";
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron marcas disponibles.");
+                }
 
-                cboCategoria.DataSource = categoriaManager.listar();
-                cboCategoria.ValueMember = "Id";
-                cboCategoria.DisplayMember = "Descripcion";
+                // Cargar Categorías
+                var categorias = categoriaManager.listar();
+                if (categorias != null && categorias.Count > 0)
+                {
+                    cboCategoria.DataSource = categorias;
+                    cboCategoria.ValueMember = "Id";
+                    cboCategoria.DisplayMember = "Descripcion";
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron categorías disponibles.");
+                }
+
+               
 
                 if (articulo != null)
                 {
@@ -119,32 +153,57 @@ namespace winform_app
                     txtNombre.Text = articulo.Nombre;
                     txtDescripcion.Text = articulo.Descripcion;
                     txtPrecio.Text = articulo.Precio.ToString();
-                    cboMarca.SelectedValue = articulo.Marca.Id;
-                    cboCategoria.SelectedValue = articulo.Categoria.id;
 
-                    // Buscar la imagen del artículo y cargarla
-                    List<Imagen> imagenes = imagenManager.buscarImagenesXArticulo(articulo.Id);
-                    if (imagenes.Count > 0)
-                    {
-                        string imagenUrl = imagenes[0].ImagenUrl; // Asume que solo tiene una imagen
-                        txtImagenUrl.Text = imagenUrl;
-                        cargarImagen(imagenUrl);
-                    }
+                    // Verifica que las marcas y categorías existan antes de asignarles el valor
+                    if (marcas.Exists(m => m.Id == articulo.Marca.Id))
+                        cboMarca.SelectedValue = articulo.Marca.Id;
+                    else
+                        MessageBox.Show("La marca del artículo no está disponible.");
+
+                    if (categorias.Exists(c => c.id == articulo.Categoria.id))
+                        cboCategoria.SelectedValue = articulo.Categoria.id;
+                    else
+                        MessageBox.Show("La categoría del artículo no está disponible.");
+
+                    // Cargar imágenes existentes
+                    listaImagenes = imagenManager.buscarImagenesXArticulo(articulo.Id);
+                    dgvImagenes.DataSource = null; // Limpiar el DataGridView
+                    dgvImagenes.DataSource = listaImagenes; // Reasignar la lista de imágenes existentes
                 }
-
-
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show("Error en evento Load AltaArticulo: " + ex.Message);
             }
         }
 
-        private void txtImagenUrl_Leave(object sender, EventArgs e)//Permite una visualizacion de la imagen a cargar
+        private void btnAgregarImagenes_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtImagenUrl.Text))
+            {
+                Imagen nuevaImagen = new Imagen
+                {
+                    ImagenUrl = txtImagenUrl.Text // agregar un diálogo para seleccionar la imagen
+                };
+                listaImagenes.Add(nuevaImagen);
+
+                // Actualizar vista temporal
+                dgvImagenes.DataSource = null; // Limpiar el DataGridView
+                dgvImagenes.DataSource = listaImagenes; // Reasignar la lista temporal
+
+                txtImagenUrl.Clear(); // Limpiar el campo de texto después de agregar
+            }
+            else
+            {
+                MessageBox.Show("Por favor, ingresa una URL de imagen.");
+            }
+        }
+
+        private void txtImagenUrl_Leave(object sender, EventArgs e)
         {
             cargarImagen(txtImagenUrl.Text);
         }
+
         private void cargarImagen(string imagen)
         {
             try
@@ -155,7 +214,6 @@ namespace winform_app
             {
                 pbxArticulo.Load("https://louisville.edu/history/images/noimage.jpg/");
             }
-
         }
     }
 }
