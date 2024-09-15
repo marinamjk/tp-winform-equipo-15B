@@ -46,5 +46,20 @@ namespace winform_app
             ventanaMarcas.MdiParent = this;
             ventanaMarcas.Show();
         }
+
+        private void verListadoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            foreach (var item in Application.OpenForms)
+            {
+                if (item.GetType() == typeof(FrmCastegorias))
+                {
+                    MessageBox.Show("La ventana de Artículos ya se encuentra abierta.");
+                    return;
+                }
+            }
+            FrmCastegorias ventanaArticulos= new FrmCastegorias();
+            ventanaArticulos.MdiParent = this;
+            ventanaArticulos.Show();
+        }
     }
 }
