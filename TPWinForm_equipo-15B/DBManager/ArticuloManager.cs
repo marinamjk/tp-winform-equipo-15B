@@ -25,18 +25,32 @@ namespace DBManager
                 {
                     Articulo aux= new Articulo();
                     aux.Id = (int) datos.Lector["ArticuloId"];
+
+                    if(!(datos.Lector["Codigo"] is DBNull))
                     aux.Codigo = (string) datos.Lector["Codigo"];
-                    aux.Nombre = (string) datos.Lector["Nombre"];
-                    aux.Descripcion = (string) datos.Lector["Descripcion"];
-                    
-                    aux.Marca = new Marca();
+
+                    if (!(datos.Lector["Nombre"] is DBNull))
+                        aux.Nombre = (string) datos.Lector["Nombre"];
+
+                    if (!(datos.Lector["Descripcion"] is DBNull))
+                        aux.Descripcion = (string) datos.Lector["Descripcion"];
+
+                    if (!(datos.Lector["Marca"] is DBNull))
+                        aux.Marca = new Marca();
+
                     aux.Marca.Id = (int)datos.Lector["IdMarca"];
-                    aux.Marca.Descripcion = (string)datos.Lector["Marca"];
+
+                    if (!(datos.Lector["Marca"] is DBNull))
+                        aux.Marca.Descripcion = (string)datos.Lector["Marca"];
+
                     aux.Categoria = new Categoria();
-                    aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
+                    if (!(datos.Lector["Categoria"] is DBNull))
+                        aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
+                                     
                     aux.Categoria.id = (int)datos.Lector["IdCategoria"];
 
-                    aux.Precio = (decimal) datos.Lector["Precio"];
+                    if (!(datos.Lector["Precio"] is DBNull))
+                        aux.Precio = (decimal) datos.Lector["Precio"];
 
                     ImagenManager im = new ImagenManager();
                     aux.Imagenes= im.buscarImagenesXArticulo(aux.Id);

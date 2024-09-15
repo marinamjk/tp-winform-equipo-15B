@@ -46,6 +46,8 @@
             // 
             // txtAgregar
             // 
+            this.txtAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAgregar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAgregar.Location = new System.Drawing.Point(209, 81);
             this.txtAgregar.MaxLength = 50;
@@ -55,6 +57,7 @@
             // 
             // btnAceptar
             // 
+            this.btnAceptar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnAceptar.Location = new System.Drawing.Point(209, 176);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(159, 39);
@@ -65,6 +68,7 @@
             // 
             // btnCancelar
             // 
+            this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnCancelar.Location = new System.Drawing.Point(490, 176);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(159, 39);
@@ -84,6 +88,7 @@
             this.Controls.Add(this.lblNombre);
             this.MinimumSize = new System.Drawing.Size(822, 312);
             this.Name = "frmAltaMarca";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAltaMarca";
             this.Load += new System.EventHandler(this.frmAltaMarca_Load);
             this.ResumeLayout(false);

@@ -168,11 +168,52 @@ namespace winform_app
             }
         }
 
+        private bool validarFiltro()
+        {
+            if(CbCampo.SelectedIndex < 0)
+            {
+                MessageBox.Show("Por favor, seleccione el campo para filtrar,");
+                return true;
+            }
+            if (CbCriterio.SelectedIndex < 0)
+            {
+                MessageBox.Show("Por favor, seleccione el criterio para filtrar,");
+                return true;
+            }
+            if(CbCampo.SelectedIndex.ToString() == "Precio")
+            {
+                if (string.IsNullOrEmpty(TbFiltro.Text))
+                {
+                    MessageBox.Show("Escriba un valor numérico para filtrar..");
+
+                    return true;
+                }
+                if (!(soloNumeros(TbFiltro.Text)))
+                {
+                    MessageBox.Show("Ingrese un número por favor.");
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool soloNumeros(string cadena)
+        {
+            foreach (char caracter in cadena)
+            {
+                if (!(char.IsNumber(caracter)))
+                    return false;
+            }
+            return true;
+        }
         private void BtFiltrar_Click(object sender, EventArgs e)
         {
             ArticuloManager articuloFiltrado = new ArticuloManager();
             try
             {
+                if (validarFiltro())
+                    return;
+
                 string campo = CbCampo.SelectedItem.ToString();
                 string criterio = CbCriterio.SelectedItem.ToString();
                 string filtro = TbFiltro.Text;
