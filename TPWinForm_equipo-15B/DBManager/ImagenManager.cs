@@ -97,5 +97,20 @@ namespace DBManager
             }
         }
 
+        public void eliminarImagen(int idImagen)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("DELETE FROM IMAGENES WHERE Id = @idImagen");
+                datos.setearParametros("@idImagen", idImagen);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }
