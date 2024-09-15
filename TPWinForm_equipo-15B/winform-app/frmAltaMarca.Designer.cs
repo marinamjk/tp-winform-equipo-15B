@@ -54,6 +54,7 @@
             this.txtAgregar.Name = "txtAgregar";
             this.txtAgregar.Size = new System.Drawing.Size(440, 26);
             this.txtAgregar.TabIndex = 1;
+            this.txtAgregar.TextChanged += new System.EventHandler(this.txtAgregar_TextChanged);
             // 
             // btnAceptar
             // 

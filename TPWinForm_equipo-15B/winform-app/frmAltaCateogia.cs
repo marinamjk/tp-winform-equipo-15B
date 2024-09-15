@@ -26,8 +26,28 @@ namespace winform_app
             InitializeComponent();
             this.categoria = categoria;
         }
+
+        private bool validarEntrada()
+        {
+            if (TbAgregar.Text == "")
+            {
+                TbAgregar.BackColor = Color.Red;
+                return false;
+            }
+            else
+            {
+                TbAgregar.BackColor = System.Drawing.SystemColors.Control;
+            }
+
+            return true;
+        }
         private void BtAceptar_Click(object sender, EventArgs e)
         {
+            if (!validarEntrada())
+            {
+                return;
+            }
+
             CategoriaManager CategoriaManager = new CategoriaManager();
 
             try
@@ -58,6 +78,14 @@ namespace winform_app
         private void BtCancelar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void TbAgregar_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(TbAgregar.Text))
+            {
+                TbAgregar.BackColor = System.Drawing.SystemColors.Control;
+            }
         }
     }
 }

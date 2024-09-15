@@ -30,8 +30,29 @@ namespace winform_app
             Close();
         }
 
+        private bool validarEntrada()
+        {
+            if (txtAgregar.Text == "")
+            {
+                txtAgregar.BackColor = Color.Red;
+                return false;
+            }               
+            else
+            {
+                txtAgregar.BackColor = System.Drawing.SystemColors.Control;
+            }
+
+            return true;
+        }
+
+
+
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            if (!validarEntrada())
+            {
+                return;
+            }
             MarcaManager marcaManager = new MarcaManager();
 
             try
@@ -73,6 +94,14 @@ namespace winform_app
                 MessageBox.Show(ex.ToString());
             }
           
+        }
+
+        private void txtAgregar_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtAgregar.Text))
+            {
+                txtAgregar.BackColor = System.Drawing.SystemColors.Control;
+            }
         }
     }
 }

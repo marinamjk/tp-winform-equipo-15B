@@ -37,24 +37,28 @@
             // LbNombre
             // 
             this.LbNombre.AutoSize = true;
-            this.LbNombre.Location = new System.Drawing.Point(102, 85);
+            this.LbNombre.Location = new System.Drawing.Point(153, 131);
+            this.LbNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LbNombre.Name = "LbNombre";
-            this.LbNombre.Size = new System.Drawing.Size(42, 13);
+            this.LbNombre.Size = new System.Drawing.Size(63, 20);
             this.LbNombre.TabIndex = 0;
             this.LbNombre.Text = "nombre";
             // 
             // TbAgregar
             // 
-            this.TbAgregar.Location = new System.Drawing.Point(160, 82);
+            this.TbAgregar.Location = new System.Drawing.Point(240, 126);
+            this.TbAgregar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TbAgregar.Name = "TbAgregar";
-            this.TbAgregar.Size = new System.Drawing.Size(217, 20);
+            this.TbAgregar.Size = new System.Drawing.Size(324, 26);
             this.TbAgregar.TabIndex = 1;
+            this.TbAgregar.TextChanged += new System.EventHandler(this.TbAgregar_TextChanged);
             // 
             // BtAceptar
             // 
-            this.BtAceptar.Location = new System.Drawing.Point(160, 134);
+            this.BtAceptar.Location = new System.Drawing.Point(240, 206);
+            this.BtAceptar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BtAceptar.Name = "BtAceptar";
-            this.BtAceptar.Size = new System.Drawing.Size(88, 24);
+            this.BtAceptar.Size = new System.Drawing.Size(132, 37);
             this.BtAceptar.TabIndex = 2;
             this.BtAceptar.Text = "Aceptar";
             this.BtAceptar.UseVisualStyleBackColor = true;
@@ -62,24 +66,26 @@
             // 
             // BtCancelar
             // 
-            this.BtCancelar.Location = new System.Drawing.Point(290, 134);
+            this.BtCancelar.Location = new System.Drawing.Point(435, 206);
+            this.BtCancelar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BtCancelar.Name = "BtCancelar";
-            this.BtCancelar.Size = new System.Drawing.Size(75, 23);
+            this.BtCancelar.Size = new System.Drawing.Size(112, 35);
             this.BtCancelar.TabIndex = 3;
             this.BtCancelar.Text = "Cancelar";
             this.BtCancelar.UseVisualStyleBackColor = true;
             this.BtCancelar.Click += new System.EventHandler(this.BtCancelar_Click);
             // 
-            // Form1
+            // frmAltaCateogia
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(547, 186);
+            this.ClientSize = new System.Drawing.Size(820, 286);
             this.Controls.Add(this.BtCancelar);
             this.Controls.Add(this.BtAceptar);
             this.Controls.Add(this.TbAgregar);
             this.Controls.Add(this.LbNombre);
-            this.Name = "Form1";
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Name = "frmAltaCateogia";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
