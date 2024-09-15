@@ -1,6 +1,6 @@
 ﻿namespace winform_app
 {
-    partial class frmAltaCateogia
+    partial class frmAltaCategoria
     {
         /// <summary>
         /// Required designer variable.
@@ -46,6 +46,8 @@
             // 
             // TbAgregar
             // 
+            this.TbAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TbAgregar.Location = new System.Drawing.Point(240, 126);
             this.TbAgregar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TbAgregar.Name = "TbAgregar";
@@ -55,6 +57,7 @@
             // 
             // BtAceptar
             // 
+            this.BtAceptar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.BtAceptar.Location = new System.Drawing.Point(240, 206);
             this.BtAceptar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BtAceptar.Name = "BtAceptar";
@@ -66,16 +69,18 @@
             // 
             // BtCancelar
             // 
+            this.BtCancelar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.BtCancelar.Location = new System.Drawing.Point(435, 206);
             this.BtCancelar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BtCancelar.Name = "BtCancelar";
             this.BtCancelar.Size = new System.Drawing.Size(112, 35);
             this.BtCancelar.TabIndex = 3;
             this.BtCancelar.Text = "Cancelar";
+            this.BtCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtCancelar.UseVisualStyleBackColor = true;
             this.BtCancelar.Click += new System.EventHandler(this.BtCancelar_Click);
             // 
-            // frmAltaCateogia
+            // frmAltaCategoria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -85,8 +90,11 @@
             this.Controls.Add(this.TbAgregar);
             this.Controls.Add(this.LbNombre);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "frmAltaCateogia";
+            this.MinimumSize = new System.Drawing.Size(842, 342);
+            this.Name = "frmAltaCategoria";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.frmAltaCateogia_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

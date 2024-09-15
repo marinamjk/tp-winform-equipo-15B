@@ -21,7 +21,7 @@ namespace winform_app
 
         private void BAgregar_Click(object sender, EventArgs e)
         {
-            frmAltaCateogia agregarCategoria = new frmAltaCateogia();
+            frmAltaCategoria agregarCategoria = new frmAltaCategoria();
             agregarCategoria.ShowDialog();
             cargar();
         }
@@ -29,7 +29,7 @@ namespace winform_app
         private void BModificar_Click(object sender, EventArgs e)
         {
             Categoria categoriaSeleccionada = (Categoria)DvgCategoria.CurrentRow.DataBoundItem;
-            frmAltaCateogia modificarCategoria = new frmAltaCateogia(categoriaSeleccionada);
+            frmAltaCategoria modificarCategoria = new frmAltaCategoria(categoriaSeleccionada);
             modificarCategoria.ShowDialog();
             cargar();
         }

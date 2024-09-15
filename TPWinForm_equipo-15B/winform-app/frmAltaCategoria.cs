@@ -13,15 +13,15 @@ using System.Text.RegularExpressions;
 
 namespace winform_app
 {
-    public partial class frmAltaCateogia : Form
+    public partial class frmAltaCategoria : Form
     {
         private Categoria categoria = null;
-        public frmAltaCateogia()
+        public frmAltaCategoria()
         {
             InitializeComponent();
         }
 
-        public frmAltaCateogia(Categoria categoria)
+        public frmAltaCategoria(Categoria categoria)
         {
             InitializeComponent();
             this.categoria = categoria;
@@ -85,6 +85,21 @@ namespace winform_app
             if (!string.IsNullOrEmpty(TbAgregar.Text))
             {
                 TbAgregar.BackColor = System.Drawing.SystemColors.Control;
+            }
+        }
+
+        private void frmAltaCateogia_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                if (categoria != null)
+                {
+                    TbAgregar.Text = categoria.Descripcion;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
     }

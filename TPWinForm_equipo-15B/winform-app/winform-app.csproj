@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmAltaCateogia.cs">
+    <Compile Include="frmAltaCategoria.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAltaCateogia.Designer.cs">
-      <DependentUpon>frmAltaCateogia.cs</DependentUpon>
+    <Compile Include="frmAltaCategoria.Designer.cs">
+      <DependentUpon>frmAltaCategoria.cs</DependentUpon>
     </Compile>
     <Compile Include="frmAltaMarca.cs">
       <SubType>Form</SubType>
@@ -99,14 +99,17 @@
     <EmbeddedResource Include="frmAltaArticulo.resx">
       <DependentUpon>frmAltaArticulo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAltaCateogia.resx">
-      <DependentUpon>frmAltaCateogia.cs</DependentUpon>
+    <EmbeddedResource Include="frmAltaCategoria.resx">
+      <DependentUpon>frmAltaCategoria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAltaMarca.resx">
       <DependentUpon>frmAltaMarca.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmArticulos.resx">
       <DependentUpon>frmArticulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCategorias.resx">
+      <DependentUpon>frmCategorias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDetalle.resx">
       <DependentUpon>frmDetalle.cs</DependentUpon>
