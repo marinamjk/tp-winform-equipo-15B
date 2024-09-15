@@ -224,41 +224,100 @@ namespace winform_app
 
         private void dgvImagenes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            //  // Verificar si se ha hecho clic en la columna "Eliminar"
+            //  if (e.ColumnIndex == dgvImagenes.Columns["Eliminar"].Index && e.RowIndex >= 0)
+            //  {
+            //      DialogResult result = MessageBox.Show("¿Estás seguro de que quieres eliminar esta imagen?", "Confirmar eliminación", MessageBoxButtons.YesNo);
+            //      if (result == DialogResult.Yes)
+            //      {
+            //          // Obtener el objeto de la fila seleccionada
+            //          Imagen imagenAEliminar = (Imagen)dgvImagenes.Rows[e.RowIndex].DataBoundItem;
+            //
+            //          // Eliminar el objeto de la base de datos
+            //          ImagenManager imagenManager = new ImagenManager();
+            //          imagenManager.eliminarImagen(imagenAEliminar.id);
+            //
+            //          // Actualizar la lista de imágenes y volver a asignar el DataSource
+            //          listaImagenes.Remove(imagenAEliminar);
+            //          dgvImagenes.DataSource = null;
+            //          dgvImagenes.DataSource = listaImagenes; 
+            //
+            //          // Precargar la primera imagen de la lista si la lista no está vacía
+            //          if (listaImagenes.Count > 0)
+            //          {
+            //              cargarImagen(listaImagenes[0].ImagenUrl);  // Cargar la primera imagen en el PictureBox
+            //          }
+            //          else
+            //          {
+            //              // Si no quedan imágenes, cargar una imagen por defecto
+            //              cargarImagen("https://louisville.edu/history/images/noimage.jpg");
+            //          }
+            //      }
+            //  }
+            //  else if (e.RowIndex >= 0)
+            //  {
+            //      // carga la imagen seleccionada y la cargarla en el PictureBox
+            //      Imagen imagenSeleccionada = (Imagen)dgvImagenes.Rows[e.RowIndex].DataBoundItem;
+            //      cargarImagen(imagenSeleccionada.ImagenUrl);
+            //  }
+
             // Verificar si se ha hecho clic en la columna "Eliminar"
             if (e.ColumnIndex == dgvImagenes.Columns["Eliminar"].Index && e.RowIndex >= 0)
             {
                 DialogResult result = MessageBox.Show("¿Estás seguro de que quieres eliminar esta imagen?", "Confirmar eliminación", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    // Obtener el objeto de la fila seleccionada
-                    Imagen imagenAEliminar = (Imagen)dgvImagenes.Rows[e.RowIndex].DataBoundItem;
-
-                    // Eliminar el objeto de la base de datos
-                    ImagenManager imagenManager = new ImagenManager();
-                    imagenManager.eliminarImagen(imagenAEliminar.id);
-
-                    // Actualizar la lista de imágenes y volver a asignar el DataSource
-                    listaImagenes.Remove(imagenAEliminar);
-                    dgvImagenes.DataSource = null;
-                    dgvImagenes.DataSource = listaImagenes; 
-
-                    // Precargar la primera imagen de la lista si la lista no está vacía
-                    if (listaImagenes.Count > 0)
+                    try
                     {
-                        cargarImagen(listaImagenes[0].ImagenUrl);  // Cargar la primera imagen en el PictureBox
+                        // Obtener el objeto de la fila seleccionada
+                        Imagen imagenAEliminar = (Imagen)dgvImagenes.Rows[e.RowIndex].DataBoundItem;
+
+                        // Verificar que el ID de la imagen sea válido antes de intentar eliminarla
+                        if (imagenAEliminar != null && imagenAEliminar.id > 0)
+                        {
+                            // Eliminar el objeto de la base de datos
+                            ImagenManager imagenManager = new ImagenManager();
+                            imagenManager.eliminarImagen(imagenAEliminar.id);
+
+                            // Actualizar la lista de imágenes y volver a asignar el DataSource
+                            listaImagenes.Remove(imagenAEliminar);
+                            dgvImagenes.DataSource = null; // Limpiar el DataGridView
+                            dgvImagenes.DataSource = listaImagenes; // Asignar la lista actualizada
+
+                            // Precargar la primera imagen de la lista si la lista no está vacía
+                            if (listaImagenes.Count > 0)
+                            {
+                                cargarImagen(listaImagenes[0].ImagenUrl);  // Cargar la primera imagen en el PictureBox
+                            }
+                            else
+                            {
+                                // Si no quedan imágenes, cargar una imagen por defecto
+                                cargarImagen("https://louisville.edu/history/images/noimage.jpg");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("La imagen seleccionada no es válida o no tiene un ID asociado.");
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        // Si no quedan imágenes, cargar una imagen por defecto
-                        cargarImagen("https://louisville.edu/history/images/noimage.jpg");
+                        MessageBox.Show("Error al intentar eliminar la imagen: " + ex.Message);
                     }
                 }
             }
-            else if (e.RowIndex >= 0)
+            else if (e.RowIndex >= 0) // Si se ha hecho clic en una fila pero no en la columna de "Eliminar"
             {
-                // carga la imagen seleccionada y la cargarla en el PictureBox
-                Imagen imagenSeleccionada = (Imagen)dgvImagenes.Rows[e.RowIndex].DataBoundItem;
-                cargarImagen(imagenSeleccionada.ImagenUrl);
+                try
+                {
+                    // Obtener la imagen seleccionada y cargarla en el PictureBox
+                    Imagen imagenSeleccionada = (Imagen)dgvImagenes.Rows[e.RowIndex].DataBoundItem;
+                    cargarImagen(imagenSeleccionada.ImagenUrl);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al intentar cargar la imagen seleccionada: " + ex.Message);
+                }
             }
         }
     }
