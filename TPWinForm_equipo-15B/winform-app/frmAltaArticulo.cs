@@ -41,7 +41,7 @@ namespace winform_app
                 List<Imagen> imagenesExistentes = imagenManager.buscarImagenesXArticulo(idArticulo);
                 if (imagen.id > 0)
                 {
-                    // Si ya existe una imagen(solo tomo la primera en este caso)
+                    // Si ya existe una imagen(solo tomo la primera en este caso) si hago esto reemplazo la imagen
                     //imagen.id = imagenesExistentes[0].id;
                     imagenManager.modificarImagen(imagen);
                 }
@@ -91,9 +91,9 @@ namespace winform_app
                 }
                 else // Si no tiene Id, es un artículo nuevo
                 {
-                    // Agregar el artículo y obtener el ID recién creado
+                    // Agrega el articulo y obteniene el ID recién creado
                     idArticulo = articuloManager.agregar(articulo);
-                    articulo.Id = idArticulo; // Asignar el nuevo Id al artículo
+                    articulo.Id = idArticulo; // Asigna el nuevo Id
                 }
 
                 // Guardamos las imágenes asociadas al artículo
@@ -168,7 +168,7 @@ namespace winform_app
                     // Cargar imágenes existentes
                     listaImagenes = imagenManager.buscarImagenesXArticulo(articulo.Id);
                     dgvImagenes.DataSource = null; // Limpiar el DataGridView
-                    dgvImagenes.DataSource = listaImagenes; // Reasignar la lista de imágenes existentes
+                    dgvImagenes.DataSource = listaImagenes; // aasignar la lista de imágenes existentes
                 }
             }
             catch (Exception ex)
@@ -187,11 +187,11 @@ namespace winform_app
                 };
                 listaImagenes.Add(nuevaImagen);
 
-                // Actualizar vista temporal
-                dgvImagenes.DataSource = null; // Limpiar el DataGridView
-                dgvImagenes.DataSource = listaImagenes; // Reasignar la lista temporal
+                // Actualiza la vista temporal del dgv
+                dgvImagenes.DataSource = null; // Limpia el dgv
+                dgvImagenes.DataSource = listaImagenes; // Reasigna la lista temporal
 
-                txtImagenUrl.Clear(); // Limpiar el campo de texto después de agregar
+                txtImagenUrl.Clear(); // Limpia el campo de texto después de agregar
             }
             else
             {

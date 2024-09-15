@@ -39,10 +39,16 @@ namespace winform_app
             if(dgvArticulos.CurrentRow != null)
             {
                 Articulo seleccionado = (Articulo) dgvArticulos.CurrentRow.DataBoundItem;
-                if (seleccionado.Imagenes.Count > 0)
+             
+                if (seleccionado.Imagenes != null && seleccionado.Imagenes.Count > 0)
                 {
                     cargarImagen(seleccionado.Imagenes[nroImagen].ImagenUrl);
-                } 
+                }
+                else
+                {
+                    // Si no hay imágenes, carga la imagen predeterminada
+                    cargarImagen(string.Empty); // Pasa una cadena vacía para cargar la imagen predeterminada
+                }
 
                 habilitarControles();
             }
@@ -66,13 +72,21 @@ namespace winform_app
         {
             try
             {
-                pbArticulo.Load(imagen);
+                // Verifica si la URL de la imagen es válida o si la lista de imágenes está vacía
+                if (string.IsNullOrEmpty(imagen) || !Uri.IsWellFormedUriString(imagen, UriKind.Absolute))
+                {
+                    pbArticulo.Load("https://louisville.edu/history/images/noimage.jpg/");
+                }
+                else
+                {
+                    pbArticulo.Load(imagen);
+                }
             }
             catch (Exception ex)
             {
+                // En caso de que la carga falle, también carga la imagen predeterminada
                 pbArticulo.Load("https://louisville.edu/history/images/noimage.jpg/");
             }
-            
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
