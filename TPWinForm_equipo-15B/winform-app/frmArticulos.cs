@@ -142,7 +142,7 @@ namespace winform_app
             }
             dgvArticulos.DataSource = null;
             dgvArticulos.DataSource = listaArticulosBuscados;
-            //ocultar columnas que no quiero que se vean.. como el id
+            dgvArticulos.Columns["id"].Visible = false;
             //evento Text_Changed parece mejor..
         }
 
@@ -173,6 +173,7 @@ namespace winform_app
                 string criterio = CbCriterio.SelectedItem.ToString();
                 string filtro = TbFiltro.Text;
                 dgvArticulos.DataSource = articuloFiltrado.filtrar(campo, criterio, filtro);
+                dgvArticulos.Columns["id"].Visible = false;
             }
             catch (Exception ex)
 
