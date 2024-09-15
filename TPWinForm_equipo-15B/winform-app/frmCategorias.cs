@@ -21,7 +21,7 @@ namespace winform_app
 
         private void BAgregar_Click(object sender, EventArgs e)
         {
-            FrmCastegorias agregarCategoria = new FrmCastegorias();
+            frmAltaCateogia agregarCategoria = new frmAltaCateogia();
             agregarCategoria.ShowDialog();
             cargar();
         }
