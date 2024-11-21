@@ -208,23 +208,12 @@ namespace winform_app
         }
         private void BtFiltrar_Click(object sender, EventArgs e)
         {
-            ArticuloManager articuloFiltrado = new ArticuloManager();
-            try
-            {
-                if (validarFiltro())
-                    return;
-
-                string campo = CbCampo.SelectedItem.ToString();
-                string criterio = CbCriterio.SelectedItem.ToString();
-                string filtro = TbFiltro.Text;
-                dgvArticulos.DataSource = articuloFiltrado.filtrar(campo, criterio, filtro);
-                dgvArticulos.Columns["id"].Visible = false;
-            }
-            catch (Exception ex)
-
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            Button button = new Button();
+            button.Width = 200;
+            button.Height = 200;
+            button.Text = String.Format("hola");
+            this.Controls.Add(button);
+            dgvArticulos.Controls.Add(button);  
         }
 
         private void BtOrdenar_Click(object sender, EventArgs e)
